@@ -1,0 +1,84 @@
+<!-- Create a complete HTML webpage using the following tags and features:
+1. Include <html>, <head>, <title>, and <body> sections.
+2. Use all heading tags from <h1> to <h6>.
+3. Insert an image using the <img> tag.
+4. Add a table using <table>, <tr>, <td> tags, and apply
+colspan
+rowspan
+align attributes
+5. Create a form using:
+<input> (with required attribute)
+<select> and <option>
+<textarea>
+6. Embed another webpage or content using <iframe>. youtube url: https://www.youtube.com/watch?
+v=02q9aAVv1NI -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello !</h1>
+    <h2>Hello !</h2>
+    <h3>Hello !</h3>
+    <h4>Hello !</h4>
+    <h5>Hello !</h5>
+    <h6>Hello !</h6>
+
+    <img src="img1.jpg" alt="image 1" style="width: 500px; height: 500px;">
+
+    <table border="1" style="align-self: auto;">
+        <tr>
+            <td colspan="2" align="center">Header 1</td>
+            <td rowspan="2" align="right">Header 2</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>NO 1</td>
+            <td>NO 2</td>
+            <td>NO 3</td>
+        </tr>
+    </table>
+
+
+    <form border="1" align="center">
+        <img src="sunbeam.png" alt="" align="center">
+        <br>
+        <h2>Sunmeam Registration Form</h2>
+        <br>
+        <br>
+        <label for="name">Name : </label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="name">BirthDate : </label>
+        <input type="date" id="date" name="date"><br><br>
+        <label for="name">Email : </label>
+        <input type="email" id="Email" name="Email"><br><br>
+        <label for="password">password : </label>
+        <input type="password" id="password" name="password"><br><br>
+        <label for="Address">Address:</label><br>
+        <textarea id="Address" name="Address" rows="3" cols="50"></textarea><br><br>
+
+        <label for="course">Select Your course:</label>
+        <select id="course" name="course">
+            <option value="JAVA">JAVA</option>
+            <option value="cpp">cpp</option>
+            <option value="MERN">MERN</option>
+        </select><br><br>
+
+
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/02q9aAVv1NI" frameborder="0" allowfullscreen></iframe>
+
+</body>
+</html>
