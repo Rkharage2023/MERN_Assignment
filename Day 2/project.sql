@@ -17,7 +17,7 @@ CREATE TABLE students (
 );
 
 CREATE TABLE courses (
-    course_id INT PRIMARY KEY AUTO_INCREMENT,
+    course_id INT PRIMARY KEY,
     course_name VARCHAR(50) NOT NULL,
     description VARCHAR(255),
     fees INT,
@@ -25,6 +25,10 @@ CREATE TABLE courses (
     end_date DATE,
     video_expire_days INT
 );
+DROP TABLE courses;
+DROP TABLE videos;
+DROP TABLE students;
+
 
 CREATE TABLE videos (
     video_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -35,3 +39,4 @@ CREATE TABLE videos (
     added_at DATE,
     FOREIGN KEY (course_id) REFERENCES courses(course_id)
 );
+
