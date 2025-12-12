@@ -21,11 +21,41 @@ INSERT INTO  videos VALUES(2,8,"Mern-vedio 2", "AI" , "url 2","2025-11-26");
 INSERT INTO  videos VALUES(3,11,"Mern-vedio 3", "Andiod" , "url 3","2025-11-26");
 
 -- Q1 -Write a Sql query that will fetch all upcoming courses.
-SELECT * FROM courses WHERE start_date>="2025-12-20";
+SELECT * 
+    FROM courses 
+    WHERE start_date>="2025-12-20";
 
 -- Q2 -Write a Sql query that will fetch all the registered students along with course name
-SELECT s.reg_no,s.name,s.email,s.mobile_no,s.course_id,c.course_name FROM students s INNER JOIN courses c on s.course_id=c.course_id;
+SELECT 
+    s.reg_no,
+    s.name,
+    s.email,
+    s.mobile_no,
+    s.course_id,
+    c.course_name 
+    FROM students s 
+    INNER JOIN courses c on s.course_id=c.course_id;
 
 -- Q3 -Write an SQL query to fetch the complete details of a student (based on their email) along with the details
 -- of the course they are enrolled in.
-SELECT * FROM students s INNER JOIN courses c on s.course_id=c.course_id WHERE s.email="s1";
+SELECT * 
+    FROM students s 
+    INNER JOIN courses c on s.course_id=c.course_id WHERE s.email="s1";
+
+-- Q4 - 
+SELECT 
+    c.course_id,
+    c.course_name,
+    c.description,
+    c.fees,
+    c.start_date,
+    c.end_date,
+    v.video_id,
+    v.title AS video_title,
+    v.description AS video_description,
+    v.youtube_url,
+    v.added_at
+FROM students s
+JOIN courses c ON s.course_id = c.course_id
+JOIN videos v ON v.course_id = c.course_id
+WHERE video_expire_days>7;
