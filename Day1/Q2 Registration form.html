@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      body {
+        text-align: center;
+      }
+      .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+      }
+      .form-row {
+    display: flex;              
+    align-items: center;       
+    margin-bottom: 12px;
+    
+}
+
+.form-row label {
+    width: 150px;               
+    font-weight: bold;
+}
+
+.form-row input, 
+.form-row select {
+    flex: 1;            
+    padding: 6px;
+    border: 1px solid #888;
+    border-radius: 5px;
+}
+
+    </style>
+</head>
+<body>
+    <form>
+          <div class="image">
+            <img src="sunbeam.png" alt="" align="center">
+          </div>
+          <br>
+          <div class="reg">
+            <h2>Sunbeam Registration Form</h2>
+          <br>
+          <br>
+          </div>
+        <div class="container">
+          <div class="video">
+            <iframe  width="510" height="300"  src="https://www.youtube.com/embed/Az5Bt3zUtiM" 
+            allowfullscreen>
+            </iframe>
+          </div>
+          
+          <div class="info">
+
+      <div class="form-row">
+          <label for="name">Name : </label>
+          <input type="text" id="name" name="name">
+      </div>
+
+      <div class="form-row">
+          <label for="date">BirthDate : </label>
+          <input type="date" id="date" name="date">
+      </div>
+
+      <div class="form-row">
+          <label for="Email">Email : </label>
+          <input type="email" id="Email" name="Email">
+      </div>
+
+      <div class="form-row">
+          <label for="password">Password : </label>
+          <input type="password" id="password" name="password">
+      </div>
+
+      <div class="form-row">
+          <label for="Address">Address : </label>
+          <textarea id="Address" name="Address" rows="3"></textarea>
+      </div>
+
+      <div class="form-row">
+          <label>Gender : </label>
+          <input type="radio" id="male" name="gender" value="male">
+          <label for="male" style="width:auto;">Male</label>
+
+          <input type="radio" id="female" name="gender" value="female">
+          <label for="female" style="width:auto;">Female</label>
+      </div>
+
+      <div class="form-row">
+          <label for="upload_photo">Upload Photo : </label>
+          <input type="file" id="upload_photo" name="upload_photo">
+      </div>
+
+      <div class="form-row">
+          <label for="course">Course : </label>
+          <select id="course" name="course">
+              <option value="">--Select Course--</option>
+              <option value="WEB_PROGRAMMING">Web Programming</option>
+              <option value="MERN">MERN</option>
+              <option value="DATA_SCIENCE">Data Science</option>
+          </select>
+      </div>
+
+      <div class="form-row">
+          <label>Skill Set : </label>
+
+          <input type="checkbox" id="java" value="Java">
+          <label for="java" style="width:auto;">Java</label>
+
+          <input type="checkbox" id="css" value="CSS">
+          <label for="css" style="width:auto;">CSS</label>
+
+          <input type="checkbox" id="cpp" value="CPP">
+          <label for="cpp" style="width:auto;">CPP</label>
+      </div>
+
+      <div class="form-row">
+          <input type="submit" id="register" value="Register">
+          <input type="reset" id="reset" value="Clear">
+      </div>
+
+</div>
+
+        </div>
+          
+    </form>
+</body>
+</html>
