@@ -1,1 +1,25 @@
 
+To create the branch 
+git branch branch_name
+ex - git branch s1
+
+To switch into another branch
+git checkout branch_name
+ex - git checkout s1
+
+(shortcut for 1st 2 commands)
+To create and switch branch
+git checkout -b branch_name
+
+To see all branch
+git branch
+ex - git branch (* shows the current branch)
+
+To push the data follow the steps -
+git add .
+git commit -m "updated"
+git push origin branch_name
+
+To merg the data branch to the main brach
+git merge branch_name
+
