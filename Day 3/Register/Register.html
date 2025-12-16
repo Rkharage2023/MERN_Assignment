@@ -12,22 +12,22 @@
             <h1>Register</h1>
         </div>
 
-        <form>
+        <form onsubmit="return validateForm()">
             <div class="email">
                 <h2>Name</h2>
-                <input class="ep" type="text" placeholder="Name" required>
+                <input id="nameip" class="ep" type="text" placeholder="Name" required>
             </div>
             <div class="email">
                 <h2>Email Address</h2>
-                <input class="ep" type="email" placeholder="Email" required>
+                <input id="emailip" class="ep" type="email" placeholder="Email" required>
             </div>
             <div class="password">
                 <h2>Password</h2>
-                <input class="pp" type="password" placeholder="Password" required>
+                <input id="passip" class="pp" type="password" placeholder="Password" required>
             </div>
             <div class="email">
                 <h2>Phone Number</h2>
-                <input class="ep" type="text" placeholder="Phone Number" required>
+                <input id="phoneip" class="ep" type="text" placeholder="Phone Number" required>
             </div>
             <div class="Register">
                 <button class="reg">
@@ -36,5 +36,49 @@
             </div>
         </form>
     </div>
+    <script>
+function validateForm() {
+
+    let name = document.getElementById("nameip").value.trim();
+    let email = document.getElementById("emailip").value.trim();
+    let password = document.getElementById("passip").value.trim();
+    let phone = document.getElementById("phoneip").value.trim();
+
+    // Name validation
+    let namePattern = /^[A-Za-z ]+$/;
+    if (name === "") {
+        alert("Name is required");
+        return false;
+    }
+    if (!namePattern.test(name)) {
+        alert("Name should contain only letters");
+        return false;
+    }
+
+    // Email validation
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address");
+        return false;
+    }
+
+    // Password validation
+    if (password.length < 6) {
+        alert("Password must be at least 6 characters long");
+        return false;
+    }
+
+    // Phone number validation
+    let phonePattern = /^[0-9]{10}$/;
+    if (!phonePattern.test(phone)) {
+        alert("Phone number must be 10 digits");
+        return false;
+    }
+
+    alert("Registration Successful!");
+    return true;
+}
+</script>
+
 </body>
 </html>

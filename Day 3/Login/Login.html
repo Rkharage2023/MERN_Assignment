@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
@@ -12,23 +12,44 @@
             <h1>Login</h1>
         </div>
         
-        <form>
+        <form onsubmit="return validateForm()">
             <div class="email">
                 <h2>Email</h2>
-                <input type="text" class="ep" placeholder="Email" required>
+                <input id="emailip" type="email" class="ep" placeholder="Email" required>
             </div>
             
             <div class="password">
                 <h2>Password</h2>
-                <input type="text" class="ep" placeholder="Password" required>
+                <input id="passip" type="password" class="ep" placeholder="Password" required>
             </div>
+
             <div class="button">
-                <button class="log">
-                    Login
-                </button>
+                <button class="log">Login</button>
             </div>
         </form>
-
     </div>
+
+    <script>
+        function validateForm() {
+            let email = document.getElementById("emailip").value.trim();
+            let password = document.getElementById("passip").value.trim();
+
+            // Email validation
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address");
+                return false;
+            }
+
+            // Password validation
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long");
+                return false;
+            }
+
+            alert("Login Successful!");
+            return true;
+        }
+    </script>
 </body>
 </html>
