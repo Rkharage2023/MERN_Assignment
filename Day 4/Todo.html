@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Todo App</title>
     <link rel="stylesheet" href="Todo.css">
 </head>
 <body>
-    <div id="container">
-        <div id="title">
-            <h1>Todo App</h1>
-        </div>
 
-        <form onsubmit="return Send()">
-            <div class="Todo">
-                <input id="textid" type="text" placeholder="Enter a Todo" required>
-
-                <button id="buttonid" class="button">
-                        Add
-                    </button>
-            </div>
-        </form>
+<div id="container">
+    <div id="title">
+        <h1>Todo App</h1>
     </div>
+
+    <form>
+        <div class="Todo">
+            <input class="textid" id="inputTask" type="text" placeholder="Enter a Todo">
+            <button type="button" id="addBtn">Add</button>
+        </div>
+        <ul id="taskList"></ul>
+    </form>
+</div>
+
+<script src="Todo.js"></script>
 </body>
 </html>
