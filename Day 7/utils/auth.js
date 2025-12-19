@@ -8,14 +8,17 @@ function authUser(req,res,next){
     if(path == '/users/signup' || path == '/users/signin')
         next()
     else{
-        const token = req.header.token
+        const token = req.headers.token
         if(!token){
             res.send(result.createResult('Token is missing'))
         }
         else{
             try {
                 const payload = jwt.verify(token, config.SECRET)
-                req.header.payload = payload
+                // req.headers.payload = payload
+                req.headers.uid = payload.uid
+                req.headers.email = payload.email
+                next()
             } catch (ex) {
                 res.send(result.createResult('Token is Invalid'))
             }

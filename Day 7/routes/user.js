@@ -45,16 +45,16 @@ router.post('/signin',(req,res)=>{
     })
 })
 
-router.get('/',(req,res) =>{
-    const {email} = req.query
-    const sql = `select * from users where email = ?`
-    pool.query(sql,[email],(error,data)=>{
-        res.send(result.createResult(error,data))
+router.get('/', (req, res) => {
+    const email = req.headers.email
+    const sql = `SELECT * FROM users WHERE email = ?`
+    pool.query(sql, [email], (error, data) => {
+        res.send(result.createResult(error, data))
     })
 })
 
-router.delete('/:uid',(req,res)=>{
-    const {uid} = req.params.uid
+router.delete('/',(req,res)=>{
+    const uid = req.headers.uid
     const sql =  `delete from users where uid = ?`
     pool.query(sql,[uid],(error,data)=>{
         res.send(result.createResult(error,data))
