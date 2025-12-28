@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import { useState } from "react";
 import { LoginContext } from "./contex/loginContext";
 import Courses from "./pages/Courses";
+import CourseDetails from "./pages/CourseDetails";
 
 function App() {
   const [loginStatus, setLoginStatus] = useState(
@@ -32,6 +33,8 @@ function App() {
             element={loginStatus ? <Profile /> : <Navigate to="/login" />}
           />
           <Route path="/courses" element={<Courses />} />
+
+          <Route path="/course/:id" element={<CourseDetails />} />
         </Routes>
       </LoginContext.Provider>
 

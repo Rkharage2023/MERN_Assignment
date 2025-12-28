@@ -1,81 +1,107 @@
-import React, { useContext, useState } from "react";
+// Login.jsx
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { loginUser } from "../services/userService";
-import { LoginContext } from "../contex/loginContext";
 
-function Login() {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const { setLoginStatus } = useContext(LoginContext);
+  const validate = () => {
+    if (!email.trim()) {
+      toast.error("Email is required");
+      return false;
+    }
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email address");
+      return false;
+    }
 
-  const signin = async () => {
-    if (email === "") {
-      toast.warn("Email must be entered");
-    } else if (password === "") {
-      toast.warn("Password must be entered");
-    } else {
-      const result = await loginUser(email, password);
+    if (!password) {
+      toast.error("Password is required");
+      return false;
+    }
 
-      if (result.status === "success") {
-        sessionStorage.setItem("token", result.data.token);
+    return true;
+  };
 
-        setLoginStatus(true);
-        toast.success("Login successful");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validate()) return;
 
-        navigate("/"); // ✅ FIXED
-      } else {
-        toast.error(result.error);
-      }
+    try {
+      setLoading(true);
+      const data = await loginUser(email.trim(), password);
+
+      console.log("LOGIN RESPONSE:", data);
+
+      sessionStorage.setItem("token", data.data.token);
+
+      toast.success("Login successful!");
+      navigate("/home");
+    } catch (err) {
+      const msg = err.response?.data?.message || "Login failed. Try again.";
+      toast.error(msg);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="container w-50 shadow-sm p-3 mb-5 bg-body-tertiary rounded mt-5">
-      <div className="mb-3 text-center">
-        <h2>Login</h2>
+    <div className="container-fluid min-vh-100 d-flex">
+      {/* Left illustration */}
+      <div className="d-none d-md-flex col-md-6 bg-light flex-column justify-content-center p-5">
+        <h1 className="fw-bold mb-3">E‑Learn Hub</h1>
+        <p className="text-muted">
+          Continue your learning journey with top mentors.
+        </p>
       </div>
 
-      <div className="mb-3 mt-3">
-        <label htmlFor="email" className="form-label">
-          Email address
-        </label>
-        <input
-          type="email"
-          className="form-control"
-          id="email"
-          placeholder="name@example.com"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
+      {/* Right form */}
+      <div className="col-12 col-md-6 d-flex align-items-center justify-content-center p-4">
+        <div className="w-100" style={{ maxWidth: 420 }}>
+          <h2 className="mb-4">Log in to your account</h2>
 
-      <div className="mb-3">
-        <label htmlFor="password" className="form-label">
-          Password
-        </label>
-        <input
-          type="password"
-          id="password"
-          className="form-control"
-          placeholder="Enter password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label className="form-label">Email</label>
+              <input
+                type="email"
+                className="form-control"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
 
-      <div className="mb-3">
-        <button className="btn btn-success w-100" onClick={signin}>
-          Login
-        </button>
-      </div>
+            <div className="mb-3">
+              <label className="form-label">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
 
-      <div className="text-center">
-        Don&apos;t have an account?
-        <Link to="/register"> Click here</Link>
+            <button className="btn btn-primary w-100 mb-2" disabled={loading}>
+              {loading ? "Please wait..." : "Log in"}
+            </button>
+          </form>
+
+          <p className="mt-3">
+            New to E‑Learn Hub?{" "}
+            <Link to="/register" className="text-primary fw-semibold">
+              Sign up
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
 }
-
-export default Login;
