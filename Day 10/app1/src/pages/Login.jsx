@@ -9,7 +9,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const { loginStatus, setLoginStatus } = useContext(LoginContext);
+  const { setLoginStatus } = useContext(LoginContext);
 
   const signin = async () => {
     if (email === "") {
@@ -22,9 +22,10 @@ function Login() {
       if (result.status === "success") {
         sessionStorage.setItem("token", result.data.token);
 
-        toast.success("Login successful");
         setLoginStatus(true);
-        navigate("/home");
+        toast.success("Login successful");
+
+        navigate("/"); // ✅ FIXED
       } else {
         toast.error(result.error);
       }
@@ -33,7 +34,11 @@ function Login() {
 
   return (
     <div className="container w-50 shadow-sm p-3 mb-5 bg-body-tertiary rounded mt-5">
-      <div className="mb-3 mt-5">
+      <div className="mb-3 text-center">
+        <h2>Login</h2>
+      </div>
+
+      <div className="mb-3 mt-3">
         <label htmlFor="email" className="form-label">
           Email address
         </label>
@@ -54,18 +59,19 @@ function Login() {
           type="password"
           id="password"
           className="form-control"
+          placeholder="Enter password"
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
 
       <div className="mb-3">
-        <button className="btn btn-success" onClick={signin}>
+        <button className="btn btn-success w-100" onClick={signin}>
           Login
         </button>
       </div>
 
-      <div>
-        Don't have an account?
+      <div className="text-center">
+        Don&apos;t have an account?
         <Link to="/register"> Click here</Link>
       </div>
     </div>

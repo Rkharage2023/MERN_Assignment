@@ -36,40 +36,43 @@ function Profile() {
   };
 
   return (
-    <div className="container w-50">
-      <div className="mt-3 mb-3">
-        <input
-          type="text"
-          className="form-control"
-          id="inputName"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+    <>
+      <Navbar />
+      <div className="container w-50">
+        <div className="mt-3 mb-3">
+          <input
+            type="text"
+            className="form-control"
+            id="inputName"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <input
+            type="text"
+            className="form-control"
+            id="inputEmail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="mt-3 mb-3">
+          <input
+            type="tel"
+            className="form-control"
+            id="inputMobile"
+            value={mobile}
+            onChange={(e) => setMobile(e.target.value)}
+          />
+        </div>
+        <div>
+          <button className="btn btn-primary" onClick={update}>
+            Update
+          </button>
+        </div>
       </div>
-      <div className="mb-3">
-        <input
-          type="text"
-          className="form-control"
-          id="inputEmail"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div className="mt-3 mb-3">
-        <input
-          type="tel"
-          className="form-control"
-          id="inputMobile"
-          value={mobile}
-          onChange={(e) => setMobile(e.target.value)}
-        />
-      </div>
-      <div>
-        <button className="btn btn-primary" onClick={update}>
-          Update
-        </button>
-      </div>
-    </div>
+    </>
   );
 }
 

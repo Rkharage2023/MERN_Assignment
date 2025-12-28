@@ -1,42 +1,56 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { FaUserCircle } from "react-icons/fa";
 
 function Navbar() {
+  const navigate = useNavigate();
+  const isLoggedIn = !!sessionStorage.getItem("token");
+
+  const logout = () => {
+    sessionStorage.clear();
+    navigate("/login");
+  };
+
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-        <div className="container-fluid">
-          <Link className="navbar-brand" to="/home">
-            Home
+    <nav className="custom-navbar">
+      {/* Left */}
+      <div className="nav-left">
+        <Link to="/home" className="nav-brand">
+          Student Portal
+        </Link>
+      </div>
+
+      {/* Center */}
+      <ul className="nav-center">
+        <li>
+          <Link to="/home">Home</Link>
+        </li>
+        <li>
+          <Link to="/courses">All Courses</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+      </ul>
+
+      {/* Right */}
+      <div className="nav-right">
+        {!isLoggedIn ? (
+          <Link to="/login" className="login-button">
+            Login
           </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="/profile">
-                  Profile
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="/">
-                  Logout
-                </Link>
-              </li>
-            </ul>
+        ) : (
+          <div className="profile-area">
+            <Link to="/profile">
+              <FaUserCircle size={28} />
+            </Link>
+            <button onClick={logout} className="logout-btn">
+              Logout
+            </button>
           </div>
-        </div>
-      </nav>
-    </div>
+        )}
+      </div>
+    </nav>
   );
 }
 

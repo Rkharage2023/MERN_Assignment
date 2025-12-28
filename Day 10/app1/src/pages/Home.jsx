@@ -11,7 +11,7 @@ function Home() {
   }, []);
 
   const getCourses = async () => {
-    const token = sessionStorage.getItem('token')
+    const token = sessionStorage.getItem("token");
     const result = await getAllCourses(token);
     console.log(result);
 
@@ -27,7 +27,8 @@ function Home() {
         <div className="row">
           {course.map((e) => (
             <div key={e.course_id} className="mt-3 col-3">
-              <div className="card" style={{ width: "20rem" }}>
+              <div class="card" style={{ width: "20rem" }}>
+                <img src="" class="card-img-top" alt="..." />
                 <div className="card-body">
                   <h5 className="card-title">{e.course_name}</h5>
                   <h6 className="card-subtitle mb-2 text-muted">
@@ -37,6 +38,16 @@ function Home() {
                   <button className="btn btn-primary">Get</button>
                 </div>
               </div>
+              {/* <div className="card" style={{ width: "20rem" }}>
+                <div className="card-body">
+                  <h5 className="card-title">{e.course_name}</h5>
+                  <h6 className="card-subtitle mb-2 text-muted">
+                    {e.description}
+                  </h6>
+                  <h6 className="card-subtitle mb-2 text-muted">₹ {e.fees}</h6>
+                  <button className="btn btn-primary">Get</button>
+                </div>
+              </div> */}
             </div>
           ))}
         </div>

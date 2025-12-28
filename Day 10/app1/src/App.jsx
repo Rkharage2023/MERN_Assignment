@@ -6,27 +6,35 @@ import Register from "./pages/Register";
 import { ToastContainer } from "react-toastify";
 import { useState } from "react";
 import { LoginContext } from "./contex/loginContext";
+import Courses from "./pages/Courses";
 
 function App() {
-  const [loginStatus, setLoginStatus] = useState(false);
+  const [loginStatus, setLoginStatus] = useState(
+    !!sessionStorage.getItem("token")
+  );
 
   return (
     <>
       <LoginContext.Provider value={{ loginStatus, setLoginStatus }}>
         <Routes>
-          <Route path="/*" element={<Login />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+
           <Route path="/register" element={<Register />} />
-          {/* protecting the routes */}
+
           <Route
-            path="/home"
-            element={loginStatus ? <Home /> : <Navigate to="/" />}
+            path="/login"
+            element={!loginStatus ? <Login /> : <Navigate to="/" />}
           />
+
           <Route
             path="/profile"
-            element={loginStatus ? <Profile /> : <Navigate to="/" />}
+            element={loginStatus ? <Profile /> : <Navigate to="/login" />}
           />
+          <Route path="/courses" element={<Courses />} />
         </Routes>
       </LoginContext.Provider>
+
       <ToastContainer />
     </>
   );
